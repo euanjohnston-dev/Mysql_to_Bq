@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c093f967-7918-491a-9b82-71d4671f9723" name="Default Changelist" comment="" />
+    <list default="true" id="c093f967-7918-491a-9b82-71d4671f9723" name="Default Changelist" comment="Code now running with avro rather than json.">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bq_upload.py" beforeDir="false" afterPath="$PROJECT_DIR$/bq_upload.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/credential.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/creds.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql_json_download.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysql_json_download.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql_to_bq_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysql_to_bq_loader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/table_loading_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/table_loading_config.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,8 +26,13 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1l0fk0zwBWIyMzNnn2e5qbskjf7" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -64,7 +80,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="bq_upload" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="mysql_avro_download" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="venv_bq_sql" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -77,7 +93,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bq_upload.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mysql_avro_download.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -179,16 +195,16 @@
       <item itemvalue="Python.mysql_to_bq" />
       <item itemvalue="Python.mysql_json_download" />
       <item itemvalue="Python.start_load" />
+      <item itemvalue="Python.mysql_avro_download" />
       <item itemvalue="Python.table_loading_config" />
-      <item itemvalue="Python.bq_upload" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.start_load" />
-        <item itemvalue="Python.mysql_json_download" />
-        <item itemvalue="Python.bq_upload" />
         <item itemvalue="Python.mysql_to_bq" />
         <item itemvalue="Python.table_loading_config" />
+        <item itemvalue="Python.mysql_avro_download" />
+        <item itemvalue="Python.mysql_json_download" />
       </list>
     </recent_temporary>
   </component>
@@ -206,20 +222,43 @@
       <workItem from="1606812063294" duration="8086000" />
       <workItem from="1606824774367" duration="2920000" />
       <workItem from="1606900144351" duration="3291000" />
+      <workItem from="1607007423138" duration="7396000" />
+      <workItem from="1607032503929" duration="12000" />
+      <workItem from="1607067914661" duration="21829000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Code now running with avro rather than json." />
+    <option name="LAST_COMMIT_MESSAGE" value="Code now running with avro rather than json." />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/venv_bq_sql$mysql_to_bq.coverage" NAME="mysql_to_bq Coverage Results" MODIFIED="1606815304853" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/venv_bq_sql$mysql_to_bq.coverage" NAME="mysql_to_bq Coverage Results" MODIFIED="1607084952892" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/venv_bq_sql$scratch_107.coverage" NAME="scratch_107 Coverage Results" MODIFIED="1607014077651" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
     <SUITE FILE_PATH="coverage/venv_bq_sql$Unnamed.coverage" NAME="Unnamed Coverage Results" MODIFIED="1606739265524" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/venv_bq_sql$mysql_avro_download.coverage" NAME="mysql_avro_download Coverage Results" MODIFIED="1607079912764" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/venv_bq_sql$redshift_to_bq_loader.coverage" NAME="redshift_to_bq_loader Coverage Results" MODIFIED="1606740742322" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/venv_bq_sql$start_load.coverage" NAME="start_load Coverage Results" MODIFIED="1606904081868" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/venv_bq_sql$start_load.coverage" NAME="start_load Coverage Results" MODIFIED="1607099901919" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/venv_bq_sql$bq_upload.coverage" NAME="bq_upload Coverage Results" MODIFIED="1606823304165" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/venv_bq_sql$scratch_106.coverage" NAME="scratch_106 Coverage Results" MODIFIED="1606749476093" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
-    <SUITE FILE_PATH="coverage/venv_bq_sql$mysql_json_download.coverage" NAME="mysql_json_download Coverage Results" MODIFIED="1606825873575" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/venv_bq_sql$table_loading_config.coverage" NAME="table_loading_config Coverage Results" MODIFIED="1606756298063" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/venv_bq_sql$mysql_json_download.coverage" NAME="mysql_json_download Coverage Results" MODIFIED="1607076203943" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/venv_bq_sql$json_to_avro.coverage" NAME="json_to_avro Coverage Results" MODIFIED="1607014114276" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/venv_bq_sql$table_loading_config.coverage" NAME="table_loading_config Coverage Results" MODIFIED="1607084121612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

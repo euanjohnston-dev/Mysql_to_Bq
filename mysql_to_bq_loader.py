@@ -10,9 +10,7 @@
 # INSERT `get-data-team.mysql_load_test.load_test_1` (test_id, test_name,loaded_at)
 # VALUES(1, 'dog', '2019-02-04')
 
-
-
-import mysql_json_download as m
+import mysql_avro_download as m
 import bq_upload as bq
 from datetime import datetime
 import os
@@ -30,14 +28,13 @@ def make_bq_table_from_mysql_query(query, local_filename, bucket, filename_on_bu
     returns False if there is no data to copy, else returns true.
     """
 
-    #get data locally to json
-    file = m.mysql_query_to_file(query, local_filename)
-    #if file is empty: return and message done
-    #else upload it to bq. schema is auto guessed from json (writing avro is slow)
-    if os.stat(local_filename).st_size == 0:
+    file, counts = m.mysql_query_to_file(query,table_name)
+
+    # counts variable returns the data that needs to be added
+    if counts == 0:
         print ("No data to be copied")
         return False
-    bq.local_json_to_bq(file, bucket, filename_on_bucket, dataset, table_name, date_partition_column=date_partition_column)
+    bq.local_avro_to_bq(file, bucket, filename_on_bucket, dataset, table_name, date_partition_column=date_partition_column)
     return True
 
 
@@ -49,7 +46,6 @@ def full_copy_schema(schema_name='tenjin'):
         #TODO - remove limit
         #query = "select * from {}.{} limit 10000".format(schema_name, table)
         query = "select * from {}.{}".format(schema_name, table) # how big are the tables? can it be done in 1 load? #no
-        print(query)
         local_filename = table + '.json'
 
         bucket = 'datateam_bucket'
@@ -97,7 +93,6 @@ def copy_table_increment_on_column(schema_name, table_name, increment_column, bu
         print("Table not found.")
         last_val_query = """SELECT MIN({}) as inc_val FROM {}""".format(increment_column, schema_name+'.'+table_name)
         last_val_res = m._mysql_select_to_dict(last_val_query)
-        print(last_val_res)
         last_val = last_val_res[0]['inc_val']
 
         increment_query = """select *
@@ -128,7 +123,6 @@ def _make_merge_query(increment_table_id, target_table_id, merge_columns_list):
     try:
         table = client.get_table(target_table_id)
         columns_list = list(c.name for c in table.schema)
-        print(columns_list)
     except:
         return None
 
@@ -168,9 +162,9 @@ def merge_bq_increment_from_mysql_query(query,  bucket, schema_name, dataset, ta
     target_table_id = "{}.{}".format(dataset, table_name)
     filename_on_bucket = '{}/{}/{}/{}'.format(schema_name, datetime.now().strftime("%Y/%m/%d"), table_name, local_filename)
 
+
     make_bq_table_from_mysql_query(query, local_filename, bucket, filename_on_bucket, dataset, table_name,
                                           date_partition_column=date_partition_column)
-
     merge_bq_tables(increment_table_id, target_table_id, merge_columns_list)
 
 
@@ -198,8 +192,8 @@ def copy_table_incrementally_on_column(schema_name, table_name, increment_column
 
 
 def copy_table_configs(table_configs):
-    for table_config in table_configs:
 
+    for table_config in table_configs:
         if table_config['increment_method'] == 'query':
             print("Copying from config: ", json.dumps(table_config))
             merge_bq_increment_from_mysql_query(**table_config)
@@ -210,16 +204,3 @@ def copy_table_configs(table_configs):
             copy_table_incrementally_on_column(**table_config)
             print("Copying table finished")
 
-
-if __name__ == "__main__":
-    table_config = {}
-    table_config['increment_method'] = 'increment_column'
-    table_config['schema_name'] = 'tenjin'
-    table_config['table_name'] = 'daily_ad_revenue'
-    table_config['increment_column'] = 'id'
-    #table_config['rows_per_increment'] = 1000*1000
-    table_config['bucket'] = 'datateam_bucket'
-    table_config['dataset'] = 'get-data-team.tenjin_dv_test'
-    table_config['merge_columns_list'] = ['id']
-
-    copy_table_incrementally_on_column(**table_config)
