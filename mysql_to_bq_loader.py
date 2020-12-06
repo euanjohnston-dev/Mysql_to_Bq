@@ -1,18 +1,7 @@
 # GCP
 # https://console.cloud.google.com/bigquery?_ga=2.242256450.1945640844.1606734099-739871521.1606732985&project=get-data-team&j=bq:US:bquxjob_c69e696_1761a1f16ea&page=queryresults
-# Create some of the tables in the GCP dummy area you have created.
-# test the merge condition element (it needs to be hit first with valid data).
-# Add large volumes of data to the sql tables (Adrian recommended crossjoins)
-# Will need to add columns to the relevant sql tables when merge conditions get hit.
-# make sure necessary packages are wrapped within the VE
 
-# Query for quotes
-# INSERT `get-data-team.mysql_load_test.load_test_1` (test_id, test_name,loaded_at)
-# VALUES(1, 'dog', '2019-02-04')
-
-
-
-import mysql_json_download as m
+import mysql_avro_download as m
 import bq_upload as bq
 from datetime import datetime
 import os
