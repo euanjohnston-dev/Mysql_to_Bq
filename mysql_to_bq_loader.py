@@ -209,17 +209,3 @@ def copy_table_configs(table_configs):
             print("Copying from config: ", json.dumps(table_config))
             copy_table_incrementally_on_column(**table_config)
             print("Copying table finished")
-
-
-if __name__ == "__main__":
-    table_config = {}
-    table_config['increment_method'] = 'increment_column'
-    table_config['schema_name'] = 'tenjin'
-    table_config['table_name'] = 'daily_ad_revenue'
-    table_config['increment_column'] = 'id'
-    #table_config['rows_per_increment'] = 1000*1000
-    table_config['bucket'] = 'datateam_bucket'
-    table_config['dataset'] = 'get-data-team.tenjin_dv_test'
-    table_config['merge_columns_list'] = ['id']
-
-    copy_table_incrementally_on_column(**table_config)
