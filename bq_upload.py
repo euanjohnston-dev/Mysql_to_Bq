@@ -7,15 +7,15 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="creds.json"
 
 def _cloud_storage_upload(local_file, bucket, filename_on_bucket):
     """uploads file to Google Cloud storage"""
+
+    # still using json type file in naming. This needs ammending. 
+
     client = storage.Client()
-
-
-
     bucket = client.get_bucket(bucket)
     blob = bucket.blob(filename_on_bucket)
 
-    blob.upload_from_filename(local_file)
-    print('uploaded ', bucket, filename_on_bucket)
+    blob.upload_from_string(local_file.getvalue(),content_type='application/avro')
+    print('uploaded ', bucket, filename_on_bucket) #local_file
 
 
 def _cloud_storage_to_bq(bucket, filename_on_bucket, dataset, table_name, date_partition_column=None):
@@ -32,10 +32,9 @@ def _cloud_storage_to_bq(bucket, filename_on_bucket, dataset, table_name, date_p
         partition_dict = {}
 
     job_config = bigquery.LoadJobConfig(
-        autodetect=True,
-        source_format=bigquery.SourceFormat.NEWLINE_DELIMITED_JSON,
-        write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE, #WRITE_APPEND,
-        **partition_dict
+        write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE,  # WRITE_APPEND for adding data
+        source_format=bigquery.SourceFormat.AVRO,
+        use_avro_logical_types=True
     )
 
     print(job_config)
