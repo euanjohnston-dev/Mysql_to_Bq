@@ -45,7 +45,3 @@ def local_avro_to_bq(local_file, bucket, filename_on_bucket, dataset, table_name
 
     _cloud_storage_to_bq(bucket, filename_on_bucket, dataset, table_name, date_partition_column=date_partition_column)
 
-
-
-
-
