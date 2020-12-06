@@ -54,19 +54,3 @@ def local_json_to_bq(local_file, bucket, filename_on_bucket, dataset, table_name
     _cloud_storage_upload(local_file, bucket, filename_on_bucket)
 
     _cloud_storage_to_bq(bucket, filename_on_bucket, dataset, table_name, date_partition_column=date_partition_column)
-
-
-if __name__ == "__main__":
-    config = {
-    'local_file' : 'load_test_2.json',
-    'bucket' : 'datateam_bucket',
-    'filename_on_bucket' : 'load_test_2.json',
-    'dataset' : 'get-data-team.mysql_load_test',
-    'table_name' : 'load_test_1'
-    }
-
-    local_json_to_bq(**config)
-
-    # 0x10b132760
-
-
