@@ -124,8 +124,3 @@ def mysql_query_to_file(query, table_name):
     file_out = _schema_and_data_to_file(cur, avro_schema, rows)
 
     return file_out, counts
-
-
-if __name__ == "__main__":
-    mysql_query_to_file('select * from tenjin.load_test_2', 'second_test.json')
-
