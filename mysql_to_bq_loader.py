@@ -20,12 +20,15 @@ def make_bq_table_from_mysql_query(query, local_filename, bucket, filename_on_bu
     """
 
     #get data locally to json
-    file = m.mysql_query_to_file(query, local_filename)
+    file, counts = m.mysql_query_to_file(query, local_filename)
     #if file is empty: return and message done
     #else upload it to bq. schema is auto guessed from json (writing avro is slow)
-    if os.stat(local_filename).st_size == 0:
+
+
+    if counts == 0:
         print ("No data to be copied")
         return False
+
     bq.local_json_to_bq(file, bucket, filename_on_bucket, dataset, table_name, date_partition_column=date_partition_column)
     return True
 
@@ -35,8 +38,6 @@ def full_copy_schema(schema_name='tenjin'):
     tables = m._mysql_select_to_dict(query)
     tables_list = [row[0] for row in tables]
     for table in tables_list:
-        #TODO - remove limit
-        #query = "select * from {}.{} limit 10000".format(schema_name, table)
         query = "select * from {}.{}".format(schema_name, table) # how big are the tables? can it be done in 1 load? #no
         print(query)
         local_filename = table + '.json'
